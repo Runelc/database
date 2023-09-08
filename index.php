@@ -31,7 +31,47 @@ echo "<link rel='stylesheet' href='styles.css'>";
       <li><a href="#">H̲elp</a></li>
       </ul>
   </div>
-  <div class="close-tools"></div>
+  <div class="msnTools">
+  <div class="emojiDiv">
+    <div class="emojiWrapper">
+      <p class="emoji">🗣️</p>
+    </div>
+    <p class="text">I̲nvite</p>
+  </div>
+  <div class="emojiDiv">
+    <div class="emojiWrapper">
+      <p class="emoji">📁</p>
+    </div>
+    <p class="text">Send fil̲es</p>
+  </div>
+  <div class="emojiDiv">
+    <div class="emojiWrapper">
+      <p class="emoji">📹</p>
+    </div>
+    <p class="text">Video̲</p>
+  </div>
+  <div class="emojiDiv">
+    <div class="emojiWrapper">
+      <p class="emoji">🎤</p>
+    </div>
+    <p class="text">Voic̲e</p>
+  </div>
+  <div class="emojiDiv">
+    <div class="emojiWrapper">
+      <p class="emoji">🎵</p>
+    </div>
+    <p class="text">Activ̲ities</p>
+  </div>
+  <div class="emojiDiv">
+    <div class="emojiWrapper">
+      <p class="emoji">🎲</p>
+    </div>
+    <p class="text">G̲ames</p>
+  </div>
+</div>
+
+
+
   <p class=""></p>
    </div>
 </body>
