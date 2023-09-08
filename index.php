@@ -68,10 +68,31 @@ echo "<link rel='stylesheet' href='styles.css'>";
     </div>
     <p class="text">G̲ames</p>
   </div>
+  
+</div>
+<div class="messengerContainer">
+  <div class="wholeChat">
+  <div class="pcChatContainer">
+    <div class="pcChatWrapper">
+        <div class="pcChatTop">
+          <p class="pcChatTopText">To:</p>
+        </div>
+        <div class="pcChat"></div>
+    </div>
+    <div class="imageWrapper">
+      <div class="outerBox">
+    <img class="pcChatImg" src="./assets/profile.jpeg" alt="profile image">
+    <img class="arrow" src="./assets/arrow.png" alt="arrow">
+    </div>
+    <div class="arrowSide">
+    <img class="arrowSideImage" src="./assets/arrow.png" alt="arrow">
+    </div>
+    </div>
+  </div>
+  </div>
 </div>
 
 
 
-  <p class=""></p>
    </div>
 </body>
