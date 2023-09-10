@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.20.1",
+    "prettier": "^3.0.3"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true
+}
