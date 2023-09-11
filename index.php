@@ -141,18 +141,20 @@ echo "<link rel='stylesheet' href='styles.css'>";
             </div>
 
           </div>
-          <div class="messengerTextField">
-            <textarea name=""></textarea>
-            <div class="textButtons">
-              <button class="sendButton userButtons" type="submit">S̲end</button>
-              <button class="searchButton userButtons" type="submit">Sear̲ch</button>
+          <form>
+            <div class="messengerTextField">
+              <textarea name=""></textarea>
+              <div class="textButtons">
+                <button class="sendButton userButtons" type="submit">S̲end</button>
+                <button class="searchButton userButtons" type="submit">Sear̲ch</button>
+              </div>
             </div>
-          </div>
-          <div class="bottomBar">
-            <p class="bottomBarText">Last message received on 21/12/2004</p>
-          </div>
+            <div class="bottomBar">
+              <p class="bottomBarText">Last message received on 21/12/2004</p>
+            </div>
 
         </div>
+        </form>
         <div class="imageWrapper">
           <div class="outerBox">
             <img class="pcChatImg" src="./assets/duck.png" alt="profile image">
