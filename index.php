@@ -148,7 +148,9 @@ echo "<link rel='stylesheet' href='styles.css'>";
               <button class="searchButton userButtons" type="submit">Sear̲ch</button>
             </div>
           </div>
-          <div class="bottomBar"></div>
+          <div class="bottomBar">
+            <p class="bottomBarText">Last message received on 12/21/2004</p>
+          </div>
 
         </div>
         <div class="imageWrapper">
@@ -162,7 +164,8 @@ echo "<link rel='stylesheet' href='styles.css'>";
         </div>
       </div>
       <div class="underLine">
-        Click for new Emoticons and Theme Packs from Blue Mountain
+        <p class="underLineText"> Click for new Emoticons and Theme Packs from Blue Mountain
+        </p>
       </div>
     </div>
   </div>
