@@ -149,7 +149,7 @@ echo "<link rel='stylesheet' href='styles.css'>";
             </div>
           </div>
           <div class="bottomBar">
-            <p class="bottomBarText">Last message received on 12/21/2004</p>
+            <p class="bottomBarText">Last message received on 21/12/2004</p>
           </div>
 
         </div>
