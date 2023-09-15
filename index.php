@@ -76,7 +76,16 @@ echo "<link rel='stylesheet' href='styles.css'>";
             <div class="pcChatTop">
               <p class="pcChatTopText">To:</p>
             </div>
-            <div class="pcChat"></div>
+            <div class="pcChat">
+
+
+              <div class="messages">
+                <p class="user">Thomas Says:</p>
+                <p class="specificMess">Hej med dig</p>
+              </div>
+
+
+            </div>
           </div>
           <div class="imageWrapper">
             <div class="outerBox">
