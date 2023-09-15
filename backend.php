@@ -10,7 +10,8 @@ if (!isset($_SESSION['messages'])) {
 // "Text" is a key that contains the messages it self and the value is "$message".
 // "isUser" is a key that checks if the message is from the user or the bot.
 // if addmessage function is called with true, the message is from the user.
-function addMessage($message, $isUser = false) {
+function addMessage($message, $isUser = false)
+{
     $_SESSION['messages'][] = [
         'text' => $message,
         'isUser' => $isUser,
@@ -18,7 +19,8 @@ function addMessage($message, $isUser = false) {
 }
 
 // Function to get all messages from the session
-function getMessages() {
+function getMessages()
+{
     return $_SESSION['messages'];
 }
 
@@ -33,18 +35,19 @@ $keywordResponses = [
 ];
 
 // Function to process user input and generate responses
-function processUserInput($userMessage) {
+function processUserInput($userMessage)
+{
     global $keywordResponses;
 
     // Convert user input to lowercase for case-insensitive matching
     $userMessageLower = strtolower($userMessage);
 
     // Check if any keyword matches the user's message
-// Her hentes hver besked fra $_SESSION['messages'] i en løkke, og nøglerne 'text' og 'isUser' bruges
-// til at hente selve beskedens tekst og bestemme, om beskeden er fra brugeren eller chatboten.
+    // Her hentes hver besked fra $_SESSION['messages'] i en løkke, og nøglerne 'text' og 'isUser' bruges
+    // til at hente selve beskedens tekst og bestemme, om beskeden er fra brugeren eller chatboten.
 
-// $messageText: Dette er variablen, der indeholder selve beskedens tekst, som senere bruges til at vise beskeden i chatgrænsefladen.
-// $isUser: Dette er variablen, der indeholder en værdi (sand eller falsk), der indikerer, om beskeden er fra brugeren (hvis true) eller chatboten (hvis false).
+    // $messageText: Dette er variablen, der indeholder selve beskedens tekst, som senere bruges til at vise beskeden i chatgrænsefladen.
+    // $isUser: Dette er variablen, der indeholder en værdi (sand eller falsk), der indikerer, om beskeden er fra brugeren (hvis true) eller chatboten (hvis false).
     foreach ($keywordResponses as $keyword => $response) {
         if (strpos($userMessageLower, $keyword) !== false) {
             return $response;
@@ -68,5 +71,5 @@ if (isset($_POST['submit'])) {
         // Add the response to the session
         addMessage($response, false);
     }
-    header("Location: index.php"); 
+    header("Location: index.php");
 }

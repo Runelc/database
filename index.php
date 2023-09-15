@@ -152,7 +152,6 @@ echo "<link rel='stylesheet' href='styles.css'>";
             <div class="bottomBar">
               <p class="bottomBarText">Last message received on 21/12/2004</p>
             </div>
-
         </div>
         </form>
         <div class="imageWrapper">
