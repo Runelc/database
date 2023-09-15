@@ -261,9 +261,21 @@ body {
   border-top: none;
 }
 
+.messageContainer {
+  height: 200px;
+  overflow-y: auto;
+  margin-bottom: 4px;
+}
+
 .messages {
-  background-color: transparent;
-  margin: 4px;
+  margin: 2px 4px 2px 4px;
+}
+
+.specificMess {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Titillium Web", sans-serif;
 }
 
 .user,
@@ -274,8 +286,12 @@ body {
   font-family: "Titillium Web", sans-serif;
 }
 
-.user {
-  /*  margin-left: 3px; */
+.topInfo {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Titillium Web", sans-serif;
+  color: grey;
 }
 
 .specificMess {
@@ -362,6 +378,8 @@ textarea {
   border-left: 1px solid #333333;
   outline: none;
   box-sizing: border-box;
+  font-size: 12px;
+  font-family: "Titillium Web", sans-serif;
 }
 
 .emojiWrapperUser {

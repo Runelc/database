@@ -74,17 +74,18 @@ echo "<link rel='stylesheet' href='styles.css'>";
         <div class="pcChatContainer">
           <div class="pcChatWrapper">
             <div class="pcChatTop">
-              <p class="pcChatTopText">To:</p>
+              <p class="pcChatTopText">To: <b>Chatbot</b>
+                &lt;chat.bot@telefonica.net&gt;
+              </p>
             </div>
             <div class="pcChat">
 
+              <div class="messageContainer">
+                <div class="messages">
+                  <p class="topInfo">Never give out your password or credit card number in an instant message conversation. <br> ⎯⎯⎯⎯⎯⎯</p>
 
-              <div class="messages">
-                <p class="user">Thomas Says:</p>
-                <p class="specificMess">Hej med dig</p>
+                </div>
               </div>
-
-
             </div>
           </div>
           <div class="imageWrapper">
@@ -183,6 +184,75 @@ echo "<link rel='stylesheet' href='styles.css'>";
 </body>
 
 <script>
+  // Function to send a message to the chatbot
+  function sendMessage() {
+    const textarea = document.querySelector("textarea");
+    const message = textarea.value.trim();
+
+    if (message !== "") {
+      // Send the user message to backend.php using Fetch API
+      fetch(`backend/backend.php?message=${encodeURIComponent(message)}`)
+        .then((response) => response.json())
+        .then((data) => {
+          // Update the chat interface with the user message and bot response
+          updateChat(data.user, "user");
+          updateChat(data.bot, "bot");
+
+          // Scroll to the bottom of the chat
+          scrollChatToBottom();
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+
+      // Clear the input field
+      textarea.value = "";
+    }
+  }
+
+  // Function to scroll the chat container to the bottom
+  function scrollChatToBottom() {
+    const chatContainer = document.querySelector(".messageContainer");
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+  }
+
+  // Function to update the chat interface with a new message
+  function updateChat(message, userType) {
+    const chatDiv = document.querySelector(".messageContainer");
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add("messages");
+
+    const userParagraph = document.createElement("p");
+    userParagraph.classList.add("user");
+    userParagraph.textContent = userType === "user" ? "Me:" : "ChatBot Says:";
+    messageDiv.appendChild(userParagraph);
+
+    const specificMessParagraph = document.createElement("p");
+    specificMessParagraph.classList.add("specificMess");
+    specificMessParagraph.textContent = message;
+    messageDiv.appendChild(specificMessParagraph);
+
+    chatDiv.appendChild(messageDiv);
+  }
+
+  // Event listener for the send button
+  const sendButton = document.querySelector(".sendButton");
+  sendButton.addEventListener("click", function(e) {
+    e.preventDefault();
+    sendMessage();
+  });
+
+  // Event listener for the textarea for sending a message on Enter key press
+  const textarea = document.querySelector("textarea");
+  textarea.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+
+  /* Shakin animation */
   const emojiElement = document.querySelector(".shake");
 
   const msnContainer = document.querySelector(".MSN-container");
