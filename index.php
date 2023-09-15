@@ -82,7 +82,7 @@ echo "<link rel='stylesheet' href='styles.css'>";
 
               <div class="messageContainer">
                 <div class="messages">
-                  <p class="topInfo">Never give out your password or credit card number in an instant message conversation. <br> ⎯⎯⎯⎯⎯⎯</p>
+                  <p class="topInfo">Never give out your password or credit card number in an instant message conversation. <br>────</p>
 
                 </div>
               </div>
