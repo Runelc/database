@@ -1,6 +1,14 @@
 <?php
 echo "<title>Chatbot</title>";
 echo "<link rel='stylesheet' href='styles.css'>";
+echo "<link rel='icon' type='image/x-icon' href='./assets/fav-icon.png'>";
+
+// SESSION
+session_start();
+
+// Check if chat messages are available in session
+$chatMessages = isset($_SESSION['chat_messages']) ? $_SESSION['chat_messages'] : array();
+
 ?>
 
 <body>
@@ -155,8 +163,8 @@ echo "<link rel='stylesheet' href='styles.css'>";
             <div class="messengerTextField">
               <textarea name=""></textarea>
               <div class="textButtons">
-                <button class="sendButton userButtons" type="submit">S̲end</button>
-                <button class="searchButton userButtons" type="submit">Sear̲ch</button>
+                <button class="sendButton userButtons" type="submit"><u>S</u>end</button>
+                <button class="searchButton userButtons" type="submit">Sea<u>r</u>ch</button>
               </div>
             </div>
             <div class="bottomBar">
@@ -259,9 +267,48 @@ echo "<link rel='stylesheet' href='styles.css'>";
 
   emojiElement.addEventListener("click", function() {
     msnContainer.classList.toggle("shaking");
+    sendNudge()
+
 
     setTimeout(function() {
       msnContainer.classList.remove("shaking");
     }, 500);
   });
+
+  const sendNudge = () => {
+    const chatDiv = document.querySelector(".messageContainer");
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add("messages");
+
+    const userParagraph = document.createElement("p");
+    userParagraph.classList.add("nudge");
+    userParagraph.innerHTML = 'You have just sent a Nudge! <br>────';
+    messageDiv.appendChild(userParagraph);
+
+    chatDiv.appendChild(messageDiv);
+    scrollChatToBottom()
+  }
+
+
+  // SESSION 
+  // Function to load chat messages from session and display them
+  function loadChatMessages() {
+    const chatDiv = document.querySelector(".messageContainer");
+
+    // Check if chat messages are available in session
+    if (<?php echo isset($_SESSION['chat_messages']) ? 'true' : 'false'; ?>) {
+      const chatMessages = <?php echo json_encode($_SESSION['chat_messages']); ?>;
+
+      chatMessages.forEach((message) => {
+        updateChat(message.user, "user");
+        updateChat(message.bot, "bot");
+      });
+
+      // Scroll to the bottom of the chat
+      scrollChatToBottom();
+    }
+  }
+
+  // Call the function to load chat messages when the page loads
+  window.addEventListener("load", loadChatMessages);
 </script>
