@@ -1,13 +1,12 @@
 <?php
-echo "<title>Chatbot</title>";
-echo "<link rel='stylesheet' href='styles.css'>";
-echo "<link rel='icon' type='image/x-icon' href='./assets/fav-icon.png'>";
-
-// SESSION
 session_start();
 
 // Check if chat messages are available in session
 $chatMessages = isset($_SESSION['chat_messages']) ? $_SESSION['chat_messages'] : array();
+
+echo "<title>Chatbot</title>";
+echo "<link rel='stylesheet' href='styles.css'>";
+echo "<link rel='icon' type='image/x-icon' href='./assets/fav-icon.png'>";
 
 ?>
 
@@ -289,8 +288,6 @@ $chatMessages = isset($_SESSION['chat_messages']) ? $_SESSION['chat_messages'] :
     scrollChatToBottom()
   }
 
-
-  // SESSION 
   // Function to load chat messages from session and display them
   function loadChatMessages() {
     const chatDiv = document.querySelector(".messageContainer");
