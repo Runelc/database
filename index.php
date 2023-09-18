@@ -201,6 +201,7 @@ echo "<link rel='icon' type='image/x-icon' href='./assets/fav-icon.png'>";
       fetch(`backend/backend.php?message=${encodeURIComponent(message)}`)
         .then((response) => response.json())
         .then((data) => {
+          console.log(data)
           // Update the chat interface with the user message and bot response
           updateChat(data.user, "user");
           updateChat(data.bot, "bot");
