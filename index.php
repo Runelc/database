@@ -201,13 +201,15 @@ echo "<link rel='icon' type='image/x-icon' href='./assets/fav-icon.png'>";
       fetch(`backend/backend.php?message=${encodeURIComponent(message)}`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data)
-          // Update the chat interface with the user message and bot response
+          // Update the chat interface with the user message
           updateChat(data.user, "user");
-          updateChat(data.bot, "bot");
-
-          // Scroll to the bottom of the chat
-          scrollChatToBottom();
+          scrollChatToBottom()
+          // Simulate a delay of 2 seconds before updating the chat with the bot's response
+          setTimeout(() => {
+            updateChat(data.bot, "bot");
+            // Scroll to the bottom of the chat after the delay
+            scrollChatToBottom();
+          }, 1000);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -217,6 +219,7 @@ echo "<link rel='icon' type='image/x-icon' href='./assets/fav-icon.png'>";
       textarea.value = "";
     }
   }
+
 
   // Function to scroll the chat container to the bottom
   function scrollChatToBottom() {

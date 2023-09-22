@@ -1,12 +1,13 @@
 <?php
 $responses = array(
     /* Danish */
-    "Hej" => "Hej med dig!",
+    "Hej" => "Hej med dig! Hvad kan jeg hjælpe med idag?",
     "Hvordan har du det?" => "Jeg har det godt, tak!",
     "Hvad hedder du?" => "Jeg hedder ChatBot.",
     "Hvad kan du gøre?" => "Jeg kan besvare spørgsmål, give information og chatte med dig.",
     "Hvad er vejrudsigt for i morgen?" => "Jeg er ikke i stand til at give dig en vejrudsigt.",
     "Fortæl mig en vittighed" => "Hvorfor krydser kyllingen vejen? For at komme til den anden side!",
+    "Sig en joke" => "Alle børnene kom sikkert hjem fra fabrikken undtagen Ib og Arne de blev til chili konkarne",
     "Hvem vandt seneste verdensmesterskab i fodbold?" => "Jeg er ikke opdateret med aktuelle sportsresultater.",
     "Hvad er meningen med livet?" => "Det er en dyb filosofisk spørgsmål, som forskellige mennesker kan have forskellige svar på.",
     "Kan du synge en sang?" => "Jeg kan ikke synge, men jeg kan give dig sangtekster!",
@@ -15,6 +16,23 @@ $responses = array(
     "Kan du synge en sang?" => "Jeg kan ikke synge, men jeg kan give dig sangtekster!",
     "Hvad er meningen med livet?" => "Det er en dyb filosofisk spørgsmål, som forskellige mennesker kan have forskellige svar på.",
     "Hvordan laver jeg en omelet?" => "For at lave en omelet, pisk æg, tilsæt fyld som ost, grøntsager eller kød, og steg i en varm pande.",
+    "Nej" => "Okay så.",
+    "Du er grim" => "Det er ikke pænt sagt.",
+    "tak" => "Det var så lidt.",
+    "Hvad er hovedstaden i Frankrig?" => "Hovedstaden i Frankrig er Paris.",
+    "Hvad er hovedstaden i Danmark?" => "Hovedstaden i Danmark er København.",
+    "Hvad er hovedstaden i Sverige?" => "Hovedstaden i Sverige er Stockholm.",
+    "Hvad er hovedstaden i Norge?" => "Hovedstaden i Norge er Oslo.",
+    "Hvad er hovedstaden i Finland?" => "Hovedstaden i Finland er Helsinki.",
+    "Hvad er hovedstaden i Tyskland?" => "Hovedstaden i Tyskland er Berlin.",
+    "Hvad er hovedstaden i England?" => "Hovedstaden i England er London.",
+    "Hvad er hovedstaden i Spanien?" => "Hovedstaden i Spanien er Madrid.",
+    "Hvad er hovedstaden i Italien?" => "Hovedstaden i Italien er Rom.",
+    "Hvad er hovedstaden i Portugal?" => "Hovedstaden i Portugal er Lissabon.",
+    "Hvad er hovedstaden i Grækenland?" => "Hovedstaden i Grækenland er Athen.",
+    "Hvad er hovedstaden i Tyrkiet?" => "Hovedstaden i Tyrkiet er Ankara.",
+    "Hvad er hovedstaden i Rusland?" => "Hovedstaden i Rusland er Moskva.",
+
     /* English */
     "Hello" => "Hello!",
     "How are you?" => "I'm a computer program, so I'm doing fine!",

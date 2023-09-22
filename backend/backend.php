@@ -7,6 +7,7 @@ include('responses.php');
 /* The script checks if a GET parameter named message is set (sent from the JavaScript code in index.php). */
 if (isset($_GET['message'])) {
     $userMessage = $_GET['message'];
+    $userMessage = ucfirst(($userMessage));
     $botResponse = isset($responses[$userMessage]) ? $responses[$userMessage] : "Jeg forstår ikke beskeden.";
 
     /* The script checks if $_SESSION['chat_messages'] exists. If it doesn't, it initializes it as an empty array.
