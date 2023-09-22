@@ -1,13 +1,7 @@
 <?php
-session_start();
-
-// Check if chat messages are available in session
-$chatMessages = isset($_SESSION['chat_messages']) ? $_SESSION['chat_messages'] : array();
-
 echo "<title>Chatbot</title>";
 echo "<link rel='stylesheet' href='styles.css'>";
 echo "<link rel='icon' type='image/x-icon' href='./assets/fav-icon.png'>";
-
 ?>
 
 <body>
@@ -163,7 +157,7 @@ echo "<link rel='icon' type='image/x-icon' href='./assets/fav-icon.png'>";
               <textarea name=""></textarea>
               <div class="textButtons">
                 <button class="sendButton userButtons" type="submit"><u>S</u>end</button>
-                <button class="searchButton userButtons" type="submit">Sea<u>r</u>ch</button>
+                <button class="searchButton userButtons">Sea<u>r</u>ch</button>
               </div>
             </div>
             <div class="bottomBar">
@@ -191,78 +185,6 @@ echo "<link rel='icon' type='image/x-icon' href='./assets/fav-icon.png'>";
 </body>
 
 <script>
-  // Function to send a message to the chatbot
-  function sendMessage() {
-    const textarea = document.querySelector("textarea");
-    const message = textarea.value.trim();
-
-    if (message !== "") {
-      // Send the user message to backend.php using Fetch API
-      fetch(`backend/backend.php?message=${encodeURIComponent(message)}`)
-        .then((response) => response.json())
-        .then((data) => {
-          // Update the chat interface with the user message
-          updateChat(data.user, "user");
-          scrollChatToBottom()
-          // Simulate a delay of 2 seconds before updating the chat with the bot's response
-          setTimeout(() => {
-            updateChat(data.bot, "bot");
-            // Scroll to the bottom of the chat after the delay
-            scrollChatToBottom();
-          }, 1000);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-
-      // Clear the input field
-      textarea.value = "";
-    }
-  }
-
-
-  // Function to scroll the chat container to the bottom
-  function scrollChatToBottom() {
-    const chatContainer = document.querySelector(".messageContainer");
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-  }
-
-  // Function to update the chat interface with a new message
-  function updateChat(message, userType) {
-    const chatDiv = document.querySelector(".messageContainer");
-    const messageDiv = document.createElement("div");
-    messageDiv.classList.add("messages");
-
-    const userParagraph = document.createElement("p");
-    userParagraph.classList.add("user");
-    userParagraph.textContent = userType === "user" ? "Me:" : "ChatBot Says:";
-    messageDiv.appendChild(userParagraph);
-
-    const specificMessParagraph = document.createElement("p");
-    specificMessParagraph.classList.add("specificMess");
-    specificMessParagraph.textContent = message;
-    messageDiv.appendChild(specificMessParagraph);
-
-    chatDiv.appendChild(messageDiv);
-  }
-
-  // Event listener for the send button
-  const sendButton = document.querySelector(".sendButton");
-  sendButton.addEventListener("click", function(e) {
-    e.preventDefault();
-    sendMessage();
-  });
-
-  // Event listener for the textarea for sending a message on Enter key press
-  const textarea = document.querySelector("textarea");
-  textarea.addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      sendMessage();
-    }
-  });
-
-
   /* Shakin animation */
   const emojiElement = document.querySelector(".shake");
 
@@ -270,44 +192,8 @@ echo "<link rel='icon' type='image/x-icon' href='./assets/fav-icon.png'>";
 
   emojiElement.addEventListener("click", function() {
     msnContainer.classList.toggle("shaking");
-    sendNudge()
-
-
     setTimeout(function() {
       msnContainer.classList.remove("shaking");
     }, 500);
   });
-
-  const sendNudge = () => {
-    const chatDiv = document.querySelector(".messageContainer");
-    const messageDiv = document.createElement("div");
-    messageDiv.classList.add("messages");
-
-    const userParagraph = document.createElement("p");
-    userParagraph.classList.add("nudge");
-    userParagraph.innerHTML = 'You have just sent a Nudge! <br>────';
-    messageDiv.appendChild(userParagraph);
-
-    chatDiv.appendChild(messageDiv);
-    scrollChatToBottom()
-  }
-
-  // Function to load chat messages from session and display them
-  function loadChatMessages() {
-    const chatDiv = document.querySelector(".messageContainer");
-
-    // Load the messages from chat_messages
-    const chatMessages = <?php echo json_encode($_SESSION['chat_messages']); ?>;
-
-    chatMessages.forEach((message) => {
-      updateChat(message.user, "user");
-      updateChat(message.bot, "bot");
-    });
-
-    // Scroll to the bottom of the chat
-    scrollChatToBottom();
-  }
-
-  // Call the function to load chat messages when the page loads
-  window.addEventListener("load", loadChatMessages);
 </script>

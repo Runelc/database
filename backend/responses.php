@@ -1,6 +1,5 @@
 <?php
 $responses = array(
-    /* Danish */
     "Hej" => "Hej med dig! Hvad kan jeg hjælpe med idag?",
     "Hvordan har du det?" => "Jeg har det godt, tak!",
     "Hvad hedder du?" => "Jeg hedder ChatBot.",
@@ -32,8 +31,6 @@ $responses = array(
     "Hvad er hovedstaden i Grækenland?" => "Hovedstaden i Grækenland er Athen.",
     "Hvad er hovedstaden i Tyrkiet?" => "Hovedstaden i Tyrkiet er Ankara.",
     "Hvad er hovedstaden i Rusland?" => "Hovedstaden i Rusland er Moskva.",
-
-    /* English */
     "Hello" => "Hello!",
     "How are you?" => "I'm a computer program, so I'm doing fine!",
     "What's your name?" => "My name is ChatBot.",
