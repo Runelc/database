@@ -2,10 +2,7 @@
 session_start();
 
 // responeses maps over users message to find a response 
-$responses = array(
-    "Hej" => "Hej med dig!",
-    "Hvordan har du det?" => "Jeg har det godt, tak!",
-);
+include('responses.php');
 
 /* The script checks if a GET parameter named message is set (sent from the JavaScript code in index.php). */
 if (isset($_GET['message'])) {

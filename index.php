@@ -293,18 +293,16 @@ echo "<link rel='icon' type='image/x-icon' href='./assets/fav-icon.png'>";
   function loadChatMessages() {
     const chatDiv = document.querySelector(".messageContainer");
 
-    // Check if chat messages are available in session
-    if (<?php echo isset($_SESSION['chat_messages']) ? 'true' : 'false'; ?>) {
-      const chatMessages = <?php echo json_encode($_SESSION['chat_messages']); ?>;
+    // Load the messages from chat_messages
+    const chatMessages = <?php echo json_encode($_SESSION['chat_messages']); ?>;
 
-      chatMessages.forEach((message) => {
-        updateChat(message.user, "user");
-        updateChat(message.bot, "bot");
-      });
+    chatMessages.forEach((message) => {
+      updateChat(message.user, "user");
+      updateChat(message.bot, "bot");
+    });
 
-      // Scroll to the bottom of the chat
-      scrollChatToBottom();
-    }
+    // Scroll to the bottom of the chat
+    scrollChatToBottom();
   }
 
   // Call the function to load chat messages when the page loads
