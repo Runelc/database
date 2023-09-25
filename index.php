@@ -200,6 +200,26 @@ session_start();
   const formular = document.getElementById("formular");
   formular.addEventListener("submit", sendMessage);
 
+  // Function to add a message to the chat container
+  const addMessage = function(sender, message) {
+    const chatDiv = document.querySelector(".messageContainer");
+
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'messages';
+
+    const userParagraph = document.createElement('p');
+    userParagraph.classList.add('user');
+    userParagraph.textContent = sender;
+    messageDiv.appendChild(userParagraph);
+
+    const specificMessParagraph = document.createElement('p');
+    specificMessParagraph.classList.add('specificMess');
+    specificMessParagraph.textContent = message;
+    messageDiv.appendChild(specificMessParagraph);
+
+    chatDiv.appendChild(messageDiv);
+  };
+
   function sendMessage(event) {
     event.preventDefault();
     const userMessage = document.getElementById("userMessage").value.trim();
@@ -209,24 +229,6 @@ session_start();
     }
 
     const chatDiv = document.querySelector(".messageContainer");
-
-    // Funktion til at tilføje en besked i chatvinduet
-    function addMessage(sender, message) {
-      const messageDiv = document.createElement('div');
-      messageDiv.className = 'messages';
-
-      const userParagraph = document.createElement('p');
-      userParagraph.classList.add('user');
-      userParagraph.textContent = sender;
-      messageDiv.appendChild(userParagraph);
-
-      const specificMessParagraph = document.createElement('p');
-      specificMessParagraph.classList.add('specificMess');
-      specificMessParagraph.textContent = message;
-      messageDiv.appendChild(specificMessParagraph);
-
-      chatDiv.appendChild(messageDiv);
-    }
 
     fetch('backend/backend.php', {
         method: 'POST',
@@ -272,4 +274,24 @@ session_start();
       msnContainer.classList.remove("shaking");
     }, 500);
   });
+
+  // Function to load and display chat history from session
+  function loadChatHistory() {
+    const chatDiv = document.querySelector(".messageContainer");
+    const chatHistory = <?php echo json_encode($_SESSION['chat'] ?? []); ?>;
+
+    // Loop through chat history and display messages
+    chatHistory.forEach(entry => {
+      const {
+        user,
+        bot
+      } = entry;
+      addMessage(user, bot); // Call the addMessage function
+    });
+
+    scrollChatToBottom();
+  }
+
+  // Call the function to load chat history when the page loads
+  window.addEventListener("load", loadChatHistory);
 </script>
