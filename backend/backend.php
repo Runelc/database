@@ -6,10 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $requestData = json_decode(file_get_contents('php://input'));
     $userMessage = $requestData->message;
 
-
-
-
-
     // Include responses
     include('responses.php');
 
@@ -20,14 +16,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response = "Jeg forstår ikke beskeden.";
     }
 
-    // Store the user's message and bot's response in session
+    // Store the user's message and bot's response separately in session
     if (!isset($_SESSION['chat'])) {
         $_SESSION['chat'] = array();
     }
 
+    // Append user's message to the session with sender information
     $_SESSION['chat'][] = array(
-        'user' => $userMessage,
-        'bot' => $response
+        'sender' => 'Me:', // Use 'Me:' as the sender for user messages
+        'message' => $userMessage
+    );
+
+    // Append bot's response to the session with sender information
+    $_SESSION['chat'][] = array(
+        'sender' => 'ChatBot Says:', // Use 'ChatBot Says:' as the sender for bot responses
+        'message' => $response
     );
 
     // Return the response to the front-end

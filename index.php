@@ -282,11 +282,9 @@ session_start();
 
     // Loop through chat history and display messages
     chatHistory.forEach(entry => {
-      const {
-        user,
-        bot
-      } = entry;
-      addMessage(user, bot); // Call the addMessage function
+      const sender = entry.sender; // Get the sender information
+      const message = entry.message; // Get the message
+      addMessage(sender, message); // Call the addMessage function with sender and message
     });
 
     scrollChatToBottom();
