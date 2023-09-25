@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userMessage = $requestData->message;
 
     // Include responses
-    include('./responses.php');
+    include('responses.php');
 
     // Check if a response exists for the user's message
     if (isset($responses[$userMessage])) {

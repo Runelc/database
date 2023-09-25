@@ -162,11 +162,11 @@ session_start();
             </div>
 
           </div>
-          <form>
+          <form id="formular">
             <div class="messengerTextField">
               <textarea id="userMessage" name="userMessage"></textarea>
               <div class="textButtons">
-                <button class="sendButton userButtons" type="submit" onclick="sendMessage()"><u>S</u>end</button>
+                <button class="sendButton userButtons" type="submit"><u>S</u>end</button>
                 <button class="searchButton userButtons">Sea<u>r</u>ch</button>
               </div>
             </div>
@@ -197,8 +197,12 @@ session_start();
 </html>
 
 <script>
+  const formular = document.getElementById("formular");
+  formular.addEventListener("submit", sendMessage);
+
   function sendMessage(event) {
     event.preventDefault(); // Forhindrer standardformularadfærd
+    console.log("sendMessage", event)
 
     const userMessage = document.getElementById("userMessage").value;
 
