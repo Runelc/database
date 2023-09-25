@@ -245,8 +245,15 @@ session_start();
 
         // Clear the user input field
         document.getElementById("userMessage").value = "";
+        scrollChatToBottom()
       })
       .catch(error => console.error('Error:', error));
+  }
+
+  // Function to scroll the chat container to the bottom
+  function scrollChatToBottom() {
+    const chatContainer = document.querySelector(".messageContainer");
+    chatContainer.scrollTop = chatContainer.scrollHeight;
   }
 
   /* Shakin animation */
@@ -261,21 +268,3 @@ session_start();
     }, 500);
   });
 </script>
-
-<!-- function updateChat(message, userType) {
-    const chatDiv = document.querySelector(".messageContainer");
-    const messageDiv = document.createElement("div");
-    messageDiv.classList.add("messages");
-
-    const userParagraph = document.createElement("p");
-    userParagraph.classList.add("user");
-    userParagraph.textContent = userType === "user" ? "Me:" : "ChatBot Says:";
-    messageDiv.appendChild(userParagraph);
-
-    const specificMessParagraph = document.createElement("p");
-    specificMessParagraph.classList.add("specificMess");
-    specificMessParagraph.textContent = message;
-    messageDiv.appendChild(specificMessParagraph);
-
-    chatDiv.appendChild(messageDiv);
-  } -->
