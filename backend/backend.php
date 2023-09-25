@@ -1,25 +1,34 @@
 <?php
 session_start();
 
-// responeses maps over users message to find a response 
-include('responses.php');
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get the user's message from the request
+    $requestData = json_decode(file_get_contents('php://input'));
+    $userMessage = $requestData->message;
 
-/* The script checks if a GET parameter named message is set (sent from the JavaScript code in index.php). */
-if (isset($_GET['message'])) {
-    $userMessage = $_GET['message'];
-    $userMessage = ucfirst(($userMessage));
-    $botResponse = isset($responses[$userMessage]) ? $responses[$userMessage] : "Jeg forstår ikke beskeden.";
+    // Include responses
+    include('./responses.php');
 
-    /* The script checks if $_SESSION['chat_messages'] exists. If it doesn't, it initializes it as an empty array.
-    The user message and bot response are added to $_SESSION['chat_messages'] as an associative array. */
-    if (!isset($_SESSION['chat_messages'])) {
-        $_SESSION['chat_messages'] = array();
+    // Check if a response exists for the user's message
+    if (isset($responses[$userMessage])) {
+        $response = $responses[$userMessage];
+    } else {
+        $response = "Jeg forstår ikke beskeden.";
     }
 
+    // Store the user's message and bot's response in session
+    if (!isset($_SESSION['chat'])) {
+        $_SESSION['chat'] = array();
+    }
 
-    $_SESSION['chat_messages'][] = array("user" => $userMessage, "bot" => $botResponse);
+    $_SESSION['chat'][] = array(
+        'user' => $userMessage,
+        'bot' => $response
+    );
 
-    /* The script sets the HTTP response content type to JSON and echoes a JSON-encoded object containing the user message and bot response. */
-    header('Content-Type: application/json');
-    echo json_encode(array("user" => $userMessage, "bot" => $botResponse));
+    // Return the response to the front-end
+    echo json_encode(array('response' => $response));
+} else {
+    // Handle other HTTP methods if needed
+    http_response_code(405); // Method Not Allowed
 }

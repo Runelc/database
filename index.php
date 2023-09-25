@@ -164,9 +164,9 @@ session_start();
           </div>
           <form>
             <div class="messengerTextField">
-              <textarea name=""></textarea>
+              <textarea id="userMessage" name="userMessage"></textarea>
               <div class="textButtons">
-                <button class="sendButton userButtons" type="submit"><u>S</u>end</button>
+                <button class="sendButton userButtons" type="submit" onclick="sendMessage()"><u>S</u>end</button>
                 <button class="searchButton userButtons">Sea<u>r</u>ch</button>
               </div>
             </div>
@@ -197,6 +197,41 @@ session_start();
 </html>
 
 <script>
+  function sendMessage() {
+    const userMessage = document.getElementById("userMessage").value;
+
+    if (userMessage.trim() === "") {
+      return; // Ignore empty messages
+    }
+
+    fetch('backend.php', {
+        method: 'POST',
+        body: JSON.stringify({
+          message: userMessage
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        const chatContainer = document.querySelector('.messages');
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.className = 'user-message';
+        userMessageDiv.textContent = userMessage;
+        chatContainer.appendChild(userMessageDiv);
+
+        const botMessageDiv = document.createElement('div');
+        botMessageDiv.className = 'bot-message';
+        botMessageDiv.textContent = data.response;
+        chatContainer.appendChild(botMessageDiv);
+
+        // Clear the user input field
+        document.getElementById("userMessage").value = "";
+      })
+      .catch(error => console.error('Error:', error));
+  }
+
   /* Shakin animation */
   const emojiElement = document.querySelector(".shake");
 
