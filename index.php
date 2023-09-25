@@ -242,8 +242,11 @@ session_start();
         // Tilføj brugerens besked
         addMessage('Me:', userMessage);
 
-        // Tilføj chatbot's svar
-        addMessage('ChatBot Says:', data.response);
+        /* Bots message with timeout */
+        setTimeout(() => {
+          addMessage('ChatBot Says:', data.response);
+          scrollChatToBottom();
+        }, 1000);
 
         // Clear the user input field
         document.getElementById("userMessage").value = "";
