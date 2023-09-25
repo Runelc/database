@@ -197,14 +197,19 @@ session_start();
 </html>
 
 <script>
-  function sendMessage() {
+  function sendMessage(event) {
+    event.preventDefault(); // Forhindrer standardformularadfærd
+
     const userMessage = document.getElementById("userMessage").value;
 
     if (userMessage.trim() === "") {
       return; // Ignore empty messages
     }
 
-    fetch('backend.php', {
+    // Define chatDiv variable to select the message container
+    const chatDiv = document.querySelector(".messageContainer");
+
+    fetch('backend/backend.php', {
         method: 'POST',
         body: JSON.stringify({
           message: userMessage
@@ -215,22 +220,32 @@ session_start();
       })
       .then(response => response.json())
       .then(data => {
-        const chatContainer = document.querySelector('.messages');
-        const userMessageDiv = document.createElement('div');
-        userMessageDiv.className = 'user-message';
-        userMessageDiv.textContent = userMessage;
-        chatContainer.appendChild(userMessageDiv);
-
+        // Create a message container for the bot's response
         const botMessageDiv = document.createElement('div');
-        botMessageDiv.className = 'bot-message';
-        botMessageDiv.textContent = data.response;
-        chatContainer.appendChild(botMessageDiv);
+        botMessageDiv.className = 'messages';
+
+        // Create a user paragraph for the bot's response
+        const botUserParagraph = document.createElement('p');
+        botUserParagraph.classList.add('user');
+        botUserParagraph.textContent = 'ChatBot Says:';
+        botMessageDiv.appendChild(botUserParagraph);
+
+        // Create a specific message paragraph for the bot's response
+        const botSpecificMessParagraph = document.createElement('p');
+        botSpecificMessParagraph.classList.add('specificMess');
+        botSpecificMessParagraph.textContent = data.response;
+        botMessageDiv.appendChild(botSpecificMessParagraph);
+
+        // Add the bot's message container to the chat
+        chatDiv.appendChild(botMessageDiv);
 
         // Clear the user input field
         document.getElementById("userMessage").value = "";
       })
       .catch(error => console.error('Error:', error));
   }
+
+
 
   /* Shakin animation */
   const emojiElement = document.querySelector(".shake");
@@ -244,3 +259,21 @@ session_start();
     }, 500);
   });
 </script>
+
+<!-- function updateChat(message, userType) {
+    const chatDiv = document.querySelector(".messageContainer");
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add("messages");
+
+    const userParagraph = document.createElement("p");
+    userParagraph.classList.add("user");
+    userParagraph.textContent = userType === "user" ? "Me:" : "ChatBot Says:";
+    messageDiv.appendChild(userParagraph);
+
+    const specificMessParagraph = document.createElement("p");
+    specificMessParagraph.classList.add("specificMess");
+    specificMessParagraph.textContent = message;
+    messageDiv.appendChild(specificMessParagraph);
+
+    chatDiv.appendChild(messageDiv);
+  } -->
