@@ -201,17 +201,32 @@ session_start();
   formular.addEventListener("submit", sendMessage);
 
   function sendMessage(event) {
-    event.preventDefault(); // Forhindrer standardformularadfærd
-    console.log("sendMessage", event)
+    event.preventDefault();
+    const userMessage = document.getElementById("userMessage").value.trim();
 
-    const userMessage = document.getElementById("userMessage").value;
-
-    if (userMessage.trim() === "") {
+    if (userMessage === "") {
       return; // Ignore empty messages
     }
 
-    // Define chatDiv variable to select the message container
     const chatDiv = document.querySelector(".messageContainer");
+
+    // Funktion til at tilføje en besked i chatvinduet
+    function addMessage(sender, message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'messages';
+
+      const userParagraph = document.createElement('p');
+      userParagraph.classList.add('user');
+      userParagraph.textContent = sender;
+      messageDiv.appendChild(userParagraph);
+
+      const specificMessParagraph = document.createElement('p');
+      specificMessParagraph.classList.add('specificMess');
+      specificMessParagraph.textContent = message;
+      messageDiv.appendChild(specificMessParagraph);
+
+      chatDiv.appendChild(messageDiv);
+    }
 
     fetch('backend/backend.php', {
         method: 'POST',
@@ -224,28 +239,15 @@ session_start();
       })
       .then(response => response.json())
       .then(data => {
-        // Create a message container for the bot's response
-        const botMessageDiv = document.createElement('div');
-        botMessageDiv.className = 'messages';
+        // Tilføj brugerens besked
+        addMessage('Me:', userMessage);
 
-        // Create a user paragraph for the bot's response
-        const botUserParagraph = document.createElement('p');
-        botUserParagraph.classList.add('user');
-        botUserParagraph.textContent = 'ChatBot Says:';
-        botMessageDiv.appendChild(botUserParagraph);
-
-        // Create a specific message paragraph for the bot's response
-        const botSpecificMessParagraph = document.createElement('p');
-        botSpecificMessParagraph.classList.add('specificMess');
-        botSpecificMessParagraph.textContent = data.response;
-        botMessageDiv.appendChild(botSpecificMessParagraph);
-
-        // Add the bot's message container to the chat
-        chatDiv.appendChild(botMessageDiv);
+        // Tilføj chatbot's svar
+        addMessage('ChatBot Says:', data.response);
 
         // Clear the user input field
         document.getElementById("userMessage").value = "";
-        scrollChatToBottom()
+        scrollChatToBottom();
       })
       .catch(error => console.error('Error:', error));
   }
