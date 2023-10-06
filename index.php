@@ -1,5 +1,17 @@
 <?php
-session_start();
+/*  session_start();
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['username']) || !isset($_SESSION['email'])) {
+  header("Location: signup.php");
+  exit();
+}  */
+
+/* session_start();
+
+if (isset($_SESSION['email'])) {
+  echo "SESSIONS ER SAT";
+} else {
+  echo "bruger ikke logget ind";
+} */
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +45,12 @@ session_start();
     </div>
     <div class="settingsTools">
       <ul>
-        <li class="fileList"><a href="#">F̲ile</a></li>
+        <li class="fileList">
+          <a href="#">F̲ile</a>
+          <ul class="dropdown">
+            <li><a href="#" id="logoutLink">Log out</a></li>
+          </ul>
+        </li>
         <li><a href="#">E̲dit</a></li>
         <li><a href="#">A̲ctions</a></li>
         <li><a href="#">T̲ools</a></li>
@@ -291,4 +308,25 @@ session_start();
 
   // Call the function to load chat history when the page loads
   window.addEventListener("load", loadChatHistory);
+
+  /* Logout  */
+  document.getElementById('logoutLink').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    fetch('logout.php', {
+        method: 'POST',
+      })
+      .then(function(response) {
+        if (response.status === 200) {
+
+          window.location.href = '/login.php';
+        } else {
+
+          console.error('Fejl under logud.');
+        }
+      })
+      .catch(function(error) {
+        console.error('Fejl under logud:', error);
+      });
+  });
 </script>

@@ -151,10 +151,36 @@ body {
 
 .settingsTools li {
   margin: 0 0 0 10px;
+  position: relative;
 }
 
-.fileList {
-  margin-right: 10px;
+.fileList:hover .dropdown {
+  display: block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.settingsTools .dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white; /* Ændret til hvid baggrundsfarve */
+  padding: 0;
+  border: 1px solid #ccc; /* Tilføjet en grænse for at adskille elementerne */
+}
+
+.settingsTools .dropdown li {
+  margin: 0;
+}
+
+.settingsTools .dropdown a {
+  text-decoration: none;
+  color: black;
+  font-weight: lighter;
+  font-size: small;
+  display: block;
+  padding: 5px 10px;
+  white-space: nowrap; /* Forhindrer tekstskift til en ny linje */
 }
 
 .settingsTools li a {
@@ -162,6 +188,10 @@ body {
   color: black;
   font-weight: lighter;
   font-size: small;
+}
+
+.fileList {
+  margin-right: 10px;
 }
 
 .msnTools {

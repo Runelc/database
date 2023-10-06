@@ -3,11 +3,13 @@ include_once "../../../backend/database.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve user input
+
     $data = json_decode(file_get_contents("php://input"));
-    $username = $data["username"];
-    $email = $data["email"];
-    $password = $data["password"];
-    $confirm_password = $data["confirm_password"];
+    /*  error_log('Received data: ' . print_r($data, true)); */
+    $username = $data->username;
+    $email = $data->email;
+    $password = $data->password;
+    $confirm_password = $data->confirm_password;
     $signUp = userSignUp($password, $confirm_password, $username, $email);
     if ($signUp["success"] === true) {
         $signin = userSignIn($username, $password);

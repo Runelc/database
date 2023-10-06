@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Return the response to the front-end
     echo json_encode(array('response' => $response));
 } else {
-    // Handle other HTTP methods if needed
-    http_response_code(405); // Method Not Allowed
+    $error_message = "Method Not Allowed (405)";
+    http_response_code(405);
+    echo '<html><head><title>' . $error_message . '</title></head><body><h1>' . $error_message . '</h1></body></html>';
 }

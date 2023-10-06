@@ -62,6 +62,14 @@ function userSignIn($username, $password)
                 "email" => $row["email"],
                 "id" => $row["id"]
             );
+
+
+            session_start();
+
+            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['email'] = $row['email'];
+
             return $response;
         } else {
             $response = array(
