@@ -37,7 +37,7 @@
         const password = document.querySelector('input[name="password"]').value;
         const confirm_password = document.querySelector('input[name="confirm_password"]').value;
 
-        const data = {
+        const data = { // Create a data object to send to the backend
             username: username,
             email: email,
             password: password,
