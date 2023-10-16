@@ -19,6 +19,8 @@
             <input type="password" name="confirm_password" placeholder="Confirm Password" required>
             <input type="submit" value="Sign Up">
         </form>
+        <div class="loginLink"><a href="login.php">Already have a user? click here</p>
+        </div>
     </div>
 </body>
 
@@ -57,6 +59,5 @@
             .catch((error) => {
                 console.error("Error:", error);
             })
-
     });
 </script>

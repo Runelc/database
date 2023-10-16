@@ -58,3 +58,8 @@ header {
 .signup-form input[type="submit"]:hover {
   background-color: #0056b3;
 }
+
+.loginLink {
+  text-align: center;
+  margin-top: 20px;
+}

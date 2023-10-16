@@ -21,7 +21,6 @@ function userSignUp($password, $confirm_password, $username, $email)
     global $conn;
     if ($password === $confirm_password) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
         $stmt = mysqli_prepare($conn, "SELECT * FROM users WHERE username = ? OR email = ?");
         mysqli_stmt_bind_param($stmt, "ss", $username, $email);
         mysqli_stmt_execute($stmt);
@@ -62,8 +61,6 @@ function userSignIn($username, $password)
                 "email" => $row["email"],
                 "id" => $row["id"]
             );
-
-
             session_start();
 
             $_SESSION['user_id'] = $row['id'];
